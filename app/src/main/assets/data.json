@@ -1,0 +1,69 @@
+{
+  "locations": [
+    {
+      "city": "New York",
+      "latitude": 40.7127837,
+      "longitude": -74.0059413
+    },
+    {
+      "city": "Los Angeles",
+      "latitude": 34.0522342,
+      "longitude": -118.2436849
+    },
+    {
+      "city": "Chicago",
+      "latitude": 41.8781136,
+      "longitude": -87.6297982
+    },
+    {
+      "city": "Houston",
+      "latitude": 29.7604267,
+      "longitude": -95.3698028
+    },
+    {
+      "city": "Philadelphia",
+      "latitude": 39.9525839,
+      "longitude": -75.1652215
+    },
+    {
+      "city": "Phoenix",
+      "latitude": 33.4483771,
+      "longitude": -112.0740373
+    },
+    {
+      "city": "San Antonio",
+      "latitude": 29.4241219,
+      "longitude": -98.49362819999999
+    },
+    {
+      "city": "San Diego",
+      "latitude": 32.715738,
+      "longitude": -117.1610838
+    },
+    {
+      "city": "Dallas",
+      "latitude": 32.7766642,
+      "longitude": -96.79698789999999
+    },
+    {
+      "city": "San Jose",
+      "latitude": 37.3382082,
+      "longitude": -121.8863286
+    },
+    {
+      "city": "Austin",
+      "latitude": 30.267153,
+      "longitude": -97.7430608
+    },
+    {
+      "city": "Indianapolis",
+      "latitude": 39.768403,
+      "longitude": -86.158068
+    },
+    {
+      "city": "Jacksonville",
+      "latitude": 30.3321838,
+      "longitude": -81.65565099999999
+    }
+  ]
+}
