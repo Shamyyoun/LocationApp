@@ -1,6 +1,17 @@
 # LocationApp
 
-Application is read, sort location by city name and selected distance
+Application is for display location list that is contain in "data.json" file
 
+Requirements: 
+    
+    To finish app to using rxjava
+    To finish funtions in LocationsRepository class
+    To finish funtion in MainViewMode class
+    The application should display cities list in view by sorted city name
+    The application should have funtion that can be sorted by custom location
+    
+Feel free changing structure or implementing new libriaries
+
+Created pull request after changed will be implemented
 
 Bonus points: to cover unitTest
