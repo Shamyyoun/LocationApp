@@ -12,6 +12,6 @@ Requirements:
     
 Feel free changing structure or implementing new libriaries
 
-Created pull request after changed will be implemented
+Created pull request after a change
 
 Bonus points: to cover unitTest
