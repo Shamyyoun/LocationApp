@@ -4,7 +4,7 @@ Application is for display location list that is contain in "data.json" file
 
 Requirements: 
     
-    To finish app to using rxjava
+    To finish app using rxjava
     To finish funtions in LocationsRepository class
     To finish funtion in MainViewMode class
     The application should display cities list in view by sorted city name
