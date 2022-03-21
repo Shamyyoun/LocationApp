@@ -8,7 +8,7 @@ Requirements:
     To finish funtions in LocationsRepository class
     To finish funtion in MainViewMode class
     The application should display cities list in view by sorted city name
-    The application should have funtion that can be sorted by distance with custom location
+    The application should have function that can be sorted by distance with custom location
     
 Feel free changing structure or implementing new libriaries
 
