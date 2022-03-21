@@ -12,6 +12,6 @@ Requirements:
     
 Feel free changing structure or implementing new libriaries
 
-Create pull request after a change
+Create your branch and make pull request to master (branch) after a change
 
 Bonus points: to cover unitTest
