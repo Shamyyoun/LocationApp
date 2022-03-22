@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LocationApp</string>
+    <string name="city_name_s">City Name: %s</string>
+    <string name="lat_d">Lat: %f</string>
+    <string name="lng_d">Lng: %f</string>
+    <string name="something_went_wrong">Something went wrong</string>
 </resources>
