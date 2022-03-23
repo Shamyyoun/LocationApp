@@ -5,6 +5,7 @@ buildscript {
         kotlinVersion = '1.6.10'
         gradleVersion = '7.0.4'
         hiltVersion = '2.38.1'
+        powerMockVersion = '2.0.4'
     }
 
     repositories {

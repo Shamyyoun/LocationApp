@@ -1,7 +1,7 @@
 package com.nordsec.locationapp.data.local
 
 import com.google.gson.Gson
-import com.nordsec.locationapp.App
+import com.nordsec.locationapp.core.App
 import com.nordsec.locationapp.data.dto.LocationsDto
 import java.io.BufferedReader
 import java.io.InputStream

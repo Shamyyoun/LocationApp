@@ -1,4 +1,4 @@
-package com.nordsec.locationapp
+package com.nordsec.locationapp.core
 
 import android.app.Application
 import android.content.Context

@@ -2,16 +2,13 @@ package com.nordsec.locationapp.presentation.locations
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.nordsec.locationapp.domain.models.Location
+import com.nordsec.locationapp.core.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 @HiltViewModel
 class LocationsViewModel
-@Inject constructor(private val useCases: LocationsUseCases) : ViewModel() {
+@Inject constructor(private val useCases: LocationsUseCases) : BaseViewModel() {
     private val _viewState = MutableLiveData<LocationsViewState>()
     val viewState: LiveData<LocationsViewState>
         get() = _viewState
@@ -22,8 +19,8 @@ class LocationsViewModel
 //
     fun getLocationsSortedByCityName() {
         useCases.getLocationsSortedByCityNameUseCase()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(ioScheduler)
+            .observeOn(mainScheduler)
             .doOnSubscribe {
                 _viewState.value = LocationsViewState.Loading
             }
