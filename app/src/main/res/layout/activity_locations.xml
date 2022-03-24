@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".presentation.locations.LocationsActivity">
 
+    <TextView
+        android:id="@+id/tv_sorted_by_msg"
+        style="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/locations_sorted_by_text_padding"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/rv_locations"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Sorted by City Name" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_locations"
         android:layout_width="0dp"
@@ -15,8 +28,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sorted_by_msg"
         tools:listitem="@layout/item_location" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_main_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="tv_sorted_by_msg,rv_locations" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

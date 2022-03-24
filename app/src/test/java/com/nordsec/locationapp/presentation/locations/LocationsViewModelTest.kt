@@ -79,13 +79,15 @@ class LocationsViewModelTest {
         // Assert that current view state is Locations
         assertTrue(viewModel.viewState.getOrAwaitValue() is LocationsViewState.Locations)
 
-        val emittedLocations = (viewModel.viewState.getOrAwaitValue() as LocationsViewState.Locations).locations
-
+        val locationsState = viewModel.viewState.getOrAwaitValue() as LocationsViewState.Locations
 
         // Assert that emitted locations list size is the same as the test one
-        assertEquals(testLocations.size, emittedLocations.size)
-        assertEquals(testLocations[0], emittedLocations[0])
-        assertEquals(testLocations[1], emittedLocations[1])
+        assertEquals(testLocations.size, locationsState.locations.size)
+        assertEquals(testLocations[0], locationsState.locations[0])
+        assertEquals(testLocations[1], locationsState.locations[1])
+
+        // Assert that sort by in the state is by city name
+        assertEquals(LocationsSortBy.CityName, locationsState.sortBy)
     }
 
     @Test

@@ -1,23 +1,22 @@
 package com.nordsec.locationapp.presentation.locations
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nordsec.locationapp.R
 import com.nordsec.locationapp.databinding.ActivityLocationsBinding
-import com.nordsec.locationapp.domain.models.Location
 import com.nordsec.locationapp.utils.showItAndHideOthers
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LocationsActivity : AppCompatActivity() {
-    val viewModel: LocationsViewModel by viewModels()
+    private val viewModel: LocationsViewModel by viewModels()
 
     private lateinit var binding: ActivityLocationsBinding
-    private val locationsAdapter = LocationsAdapter(emptyList())
+    private lateinit var locationsAdapter: LocationsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,13 +29,22 @@ class LocationsActivity : AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
 
+        createLocationsAdapter()
         configLocationsRv()
         observeViewModel()
 
         viewModel.getLocationsSortedByCityName()
     }
 
+    private fun createLocationsAdapter() {
+        locationsAdapter = LocationsAdapter(emptyList()).apply {
+            onSortByDistanceClickListener = viewModel::getLocationsSortedByDistance
+        }
+    }
+
     private fun configLocationsRv() = binding.rvLocations.apply {
+        LocationsAdapter(emptyList())
+
         addItemDecoration(
             DividerItemDecoration(
                 this@LocationsActivity,
@@ -50,22 +58,33 @@ class LocationsActivity : AppCompatActivity() {
     private fun observeViewModel() {
         viewModel.viewState.observe(this) {
             when (it) {
-                is LocationsViewState.Locations -> renderLocations(it.locations)
+                is LocationsViewState.Locations -> renderLocations(it)
                 is LocationsViewState.Loading -> renderLoading()
                 is LocationsViewState.Error -> renderError(it)
             }
         }
     }
 
-    private fun renderLocations(locations: List<Location>) = with(binding) {
-        locationsAdapter.locations = locations
+    private fun renderLocations(state: LocationsViewState.Locations) = with(binding) {
+        // Change locations adapter data
+        locationsAdapter.locations = state.locations
         locationsAdapter.notifyDataSetChanged()
 
-        rvLocations.showItAndHideOthers(progressBar, tvErrorMsg)
+        // Set the new sort by message
+        tvSortedByMsg.text = when (state.sortBy) {
+            is LocationsSortBy.CityName -> getString(R.string.sorted_by_city_name)
+            is LocationsSortBy.DistanceFromCity -> getString(
+                R.string.sorted_by_distance_from_s,
+                state.sortBy.location.city
+            )
+        }
+
+        // Show the view
+        groupMainView.showItAndHideOthers(progressBar, tvErrorMsg)
     }
 
     private fun renderLoading() = with(binding) {
-        progressBar.showItAndHideOthers(rvLocations, tvErrorMsg)
+        progressBar.showItAndHideOthers(groupMainView, tvErrorMsg)
     }
 
     private fun renderError(error: LocationsViewState.Error) = with(binding) {
@@ -74,6 +93,6 @@ class LocationsActivity : AppCompatActivity() {
             ?: getString(R.string.something_went_wrong)
 
         tvErrorMsg.text = errorMsg
-        tvErrorMsg.showItAndHideOthers(rvLocations, progressBar)
+        tvErrorMsg.showItAndHideOthers(groupMainView, progressBar)
     }
 }

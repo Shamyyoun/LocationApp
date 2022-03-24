@@ -20,31 +20,56 @@ class LocationsViewModel
         get() = _viewState
     private val compositeDisposable = CompositeDisposable()
 
-    //    fun getLocationsSortedByDistance() {
-//
-//    }
-//
-
-    private val locationsObserver = object : SingleObserver<List<Location>> {
-        override fun onSubscribe(d: Disposable) {
-            _viewState.value = LocationsViewState.Loading
-            compositeDisposable.add(d)
-        }
-
-        override fun onSuccess(locations: List<Location>) {
-            _viewState.value = LocationsViewState.Locations(locations)
-        }
-
-        override fun onError(e: Throwable) {
-            _viewState.value = LocationsViewState.Error(errorMsg = e.message)
-        }
-    }
-
     fun getLocationsSortedByCityName() {
+        val observer = object : SingleObserver<List<Location>> {
+            override fun onSubscribe(d: Disposable) {
+                _viewState.value = LocationsViewState.Loading
+                compositeDisposable.add(d)
+            }
+
+            override fun onSuccess(locations: List<Location>) {
+                _viewState.value = LocationsViewState.Locations(
+                    locations = locations,
+                    sortBy = LocationsSortBy.CityName
+                )
+            }
+
+            override fun onError(e: Throwable) {
+                _viewState.value = LocationsViewState.Error(errorMsg = e.message)
+            }
+        }
+
         useCases.getLocationsSortedByCityNameUseCase()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(locationsObserver)
+            .subscribe(observer)
+    }
+
+    fun getLocationsSortedByDistance(location: Location) {
+        val observer = object : SingleObserver<List<Location>> {
+            override fun onSubscribe(d: Disposable) {
+                _viewState.value = LocationsViewState.Loading
+                compositeDisposable.add(d)
+            }
+
+            override fun onSuccess(locations: List<Location>) {
+                _viewState.value = LocationsViewState.Locations(
+                    locations = locations,
+                    sortBy = LocationsSortBy.DistanceFromCity(
+                        location = location
+                    )
+                )
+            }
+
+            override fun onError(e: Throwable) {
+                _viewState.value = LocationsViewState.Error(errorMsg = e.message)
+            }
+        }
+
+        useCases.getLocationsSortedByDistanceUseCase(location)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(observer)
     }
 
     override fun onCleared() {

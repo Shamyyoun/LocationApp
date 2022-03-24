@@ -10,6 +10,8 @@ import com.nordsec.locationapp.domain.models.Location
 class LocationsAdapter(var locations: List<Location>) :
     RecyclerView.Adapter<LocationsAdapter.ViewHolder>() {
 
+    var onSortByDistanceClickListener: ((Location) -> Unit)? = null
+
     inner class ViewHolder(private val binding: ItemLocationBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -17,6 +19,11 @@ class LocationsAdapter(var locations: List<Location>) :
             tvName.text = root.context.getString(R.string.city_name_s, location.city)
             tvLat.text = root.context.getString(R.string.lat_d, location.latitude)
             tvLng.text = root.context.getString(R.string.lng_d, location.longitude)
+
+            // Set listeners
+            btnSortByDistance.setOnClickListener {
+                onSortByDistanceClickListener?.invoke(location)
+            }
         }
     }
 
