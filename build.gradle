@@ -6,6 +6,8 @@ buildscript {
         gradleVersion = '7.0.4'
         hiltVersion = '2.38.1'
         powerMockVersion = '2.0.4'
+        mockitoKotlinVersion = '4.0.0'
+        archComponentsTestVersion = '2.1.0'
     }
 
     repositories {

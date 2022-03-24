@@ -8,9 +8,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Scheduler
-import io.reactivex.rxjava3.schedulers.Schedulers
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -23,17 +20,5 @@ object AppModule {
     @Provides
     fun provideLocationLocalDS(): LocationsLocalDataSource {
         return LocationsLocalDataSourceImpl()
-    }
-
-    @Provides
-    @MainThreadScheduler
-    fun provideMainScheduler(): Scheduler {
-        return AndroidSchedulers.mainThread()
-    }
-
-    @Provides
-    @IOScheduler
-    fun provideIOScheduler(): Scheduler {
-        return Schedulers.io()
     }
 }
