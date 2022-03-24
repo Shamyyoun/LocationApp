@@ -9,11 +9,15 @@ class GetLocationsSortedByCityNameUseCase
 @Inject constructor(private val locationsRepository: LocationsRepository) {
 
     operator fun invoke(): Single<List<Location>> {
-        return locationsRepository
-            .getLocations()
-            .sorted { location1, location2 ->
-                location1.city.compareTo(location2.city)
-            }
-            .toList()
+        return try {
+            locationsRepository
+                .getLocations()
+                .sorted { location1, location2 ->
+                    location1.city.compareTo(location2.city)
+                }
+                .toList()
+        } catch (e: Throwable) {
+            Single.error(e)
+        }
     }
 }

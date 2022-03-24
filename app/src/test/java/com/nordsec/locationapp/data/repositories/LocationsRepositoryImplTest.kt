@@ -50,7 +50,7 @@ class LocationsRepositoryImplTest {
                 assertNoValues()
 
                 // 1 second passed
-                testScheduler.advanceTimeBy(1L, TimeUnit.SECONDS)
+                testScheduler.advanceTimeBy(1, TimeUnit.SECONDS)
 
                 assertValueCount(testLocations.locations.size)
                 assertValueAt(0) {
@@ -64,6 +64,7 @@ class LocationsRepositoryImplTest {
                             && it.longitude == testLocations.locations[1].longitude
                 }
                 assertComplete()
+                dispose()
             }
     }
 

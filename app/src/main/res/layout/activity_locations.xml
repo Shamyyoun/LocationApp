@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.locations.LocationsActivity">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_locations"
         android:layout_width="0dp"
@@ -34,6 +33,7 @@
         android:id="@+id/tv_error_msg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
