@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="location_item_padding">12dp</dimen>
+    <dimen name="location_item_small_vertical_spacing">8dp</dimen>
+    <dimen name="location_item_small_horizontal_spacing">8dp</dimen>
+    <dimen name="locations_sorted_by_text_padding">12dp</dimen>
+</resources>
